@@ -151,6 +151,12 @@ case "$MACHINE" in
     APRUN=$RUN_CMD_POST
     ;;
 
+  "AWS")
+    module list
+    nprocs=$(( NNODES_RUN_POST*PPN_RUN_POST ))
+    APRUN="mpirun -np $nprocs"
+    ;;
+
   "LINUX")
     APRUN=$RUN_CMD_POST
     ;;
