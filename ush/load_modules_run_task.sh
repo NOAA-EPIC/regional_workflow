@@ -130,6 +130,7 @@ case "$MACHINE" in
     module load gcc/9.3.0
     module load netcdf
     export PATH=/contrib/GST/openmpi/bin:$PATH
+    export OMP_NUM_THREADS=1
     ;;
 #
   "CHEYENNE")
