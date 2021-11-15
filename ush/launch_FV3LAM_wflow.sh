@@ -121,6 +121,14 @@ elif [ "$MACHINE" = "WCOSS_CRAY" ]; then
   module load xt-lsfhpc/9.1.3
   module use -a /usrx/local/emc_rocoto/modulefiles
   module load rocoto/1.3.0rc2
+elif [ "$MACHINE" = "LINUX" ]; then
+  module purge
+  module load rocoto
+  module use /contrib/GST/hpc-modules/modulefiles/stack
+  module use /contrib/Mark.Potts/spack/share/spack/modules/linux-amzn2-skylake_avx512
+  export PATH=/contrib/GST/openmpi/bin:$PATH
+  module load gcc/9.3.0
+  module load hpc/1.2.0 hpc-gnu/9.3.0 hpc-openmpi/4.0.1 netcdf/4.7.4 crtm/2.3.0 nemsio/2.5.4 pio/2.5.3 upp/10.0.9 nemsiogfs/2.5.3 esmf/8_2_0_beta_snapshot_14 gfsio/1.4.1 wgrib2/2.0.8 cmake/3.20.1 g2/3.4.5 sfcio/1.4.1 jasper/2.0.25 g2tmpl/1.10.0 sigio/2.3.2 fms/2021.03 zlib/1.2.11 ip/3.3.3 landsfcutil/2.4.1 png/1.6.35 sp/2.3.3 bacio/2.4.1 hdf5/1.10.6 w3nco/2.4.1 w3emc/2.9.2
 else
   module purge
   module load rocoto

@@ -159,7 +159,8 @@ case "$MACHINE" in
     ;;
 
   "LINUX")
-    APRUN=$RUN_CMD_FCST
+#   APRUN=$RUN_CMD_FCST
+    APRUN="mpirun -np ${PE_MEMBER01}"
     ;;
 
   *)

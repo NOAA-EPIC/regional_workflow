@@ -632,8 +632,10 @@ case $MACHINE in
     ;;
 
   "LINUX")
-    WORKFLOW_MANAGER="none"
-    SCHED="none"
+    WORKFLOW_MANAGER="rocoto"
+    NCORES_PER_NODE=36
+    SCHED="slurm"
+#   SCHED="none"
     ;;
 
 esac
@@ -976,6 +978,13 @@ case "$MACHINE" in
     FIXgsm=${FIXgsm:-"/work/00315/tg455890/stampede2/regional_fv3/fix_am"}
     TOPO_DIR=${TOPO_DIR:-"/work/00315/tg455890/stampede2/regional_fv3/fix_orog"}
     SFC_CLIMO_INPUT_DIR=${SFC_CLIMO_INPUT_DIR:-"/work/00315/tg455890/stampede2/regional_fv3/climo_fields_netcdf"}
+    FIXLAM_NCO_BASEDIR=${FIXLAM_NCO_BASEDIR:-"/needs/to/be/specified"}
+    ;;
+
+  "LINUX")
+    FIXgsm=${FIXgsm:-"/contrib/GST/fix/fix_am"}
+    TOPO_DIR=${TOPO_DIR:-"/contrib/GST/fix/fix_orog"}
+    SFC_CLIMO_INPUT_DIR=${SFC_CLIMO_INPUT_DIR:-"/contrib/GST/fix/fix_sfc_climo"}
     FIXLAM_NCO_BASEDIR=${FIXLAM_NCO_BASEDIR:-"/needs/to/be/specified"}
     ;;
 

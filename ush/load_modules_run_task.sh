@@ -123,6 +123,15 @@ case "$MACHINE" in
     . /apps/lmod/lmod/init/sh
     ;;
 #
+  "LINUX")
+    . /apps/lmod/lmod/init/sh
+    module use /contrib/Mark.Potts/spack/share/spack/modules/linux-amzn2-skylake_avx512
+    module use /contrib/GST/hpc-modules/modulefiles/stack
+    module load gcc/9.3.0
+    module load netcdf
+    export PATH=/contrib/GST/openmpi/bin:$PATH
+    ;;
+#
   "CHEYENNE")
     . /glade/u/apps/ch/opt/lmod/8.1.7/lmod/8.1.7/init/sh
     ;;
@@ -236,6 +245,21 @@ ules_dir) for the specified task (task_name) failed:
 #  fi
 
   module list
+  echo $SHELL
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/contrib/GST/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/contrib/GST/miniconda/etc/profile.d/conda.sh" ]; then
+        . "/contrib/GST/miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/contrib/GST/miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 #fi #End if statement for tasks that load no modules
 
