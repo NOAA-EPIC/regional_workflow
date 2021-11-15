@@ -1,6 +1,7 @@
 MACHINE="AWS"
 ACCOUNT="none"
 EXPT_SUBDIR="test_rocoto"
+EXPT_BASEDIR="/lustre/expt_dirs"
 
 VERBOSE="TRUE"
 

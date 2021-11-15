@@ -136,7 +136,7 @@ case "$MACHINE" in
 
   "AWS")
     nprocs=$(( NNODES_MAKE_LBCS*PPN_MAKE_LBCS ))
-    APRUN="srun -n $nprocs"
+    APRUN="mpirun -np $nprocs"
     ;;
 
   *)
