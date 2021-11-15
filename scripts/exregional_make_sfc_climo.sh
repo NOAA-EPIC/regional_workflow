@@ -188,6 +188,11 @@ case "$MACHINE" in
     APRUN=$RUN_CMD_UTILS
     ;;
 
+  "AWS")
+    nprocs=$(( NNODES_MAKE_SFC_CLIMO*PPN_MAKE_SFC_CLIMO ))
+    APRUN="mpirun -np $nprocs"
+    ;;
+
   *)
     print_err_msg_exit "\
 Run command has not been specified for this machine:

@@ -143,6 +143,10 @@ case "$MACHINE" in
     APRUN=time
     ;;
 
+  "AWS")
+    APRUN=time
+    ;;
+
   *)
     print_err_msg_exit "\
 Run command has not been specified for this machine:

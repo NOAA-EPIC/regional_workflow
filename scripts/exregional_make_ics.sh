@@ -134,6 +134,12 @@ case "$MACHINE" in
     APRUN=$RUN_CMD_UTILS
     ;;
 
+  "AWS")
+    export PATH=/contrib/GST/openmpi/bin:$PATH
+    nprocs=2
+    APRUN="mpirun -n $nprocs"
+    ;;
+
   *)
     print_err_msg_exit "\
 Run command has not been specified for this machine:

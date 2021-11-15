@@ -121,7 +121,7 @@ elif [ "$MACHINE" = "WCOSS_CRAY" ]; then
   module load xt-lsfhpc/9.1.3
   module use -a /usrx/local/emc_rocoto/modulefiles
   module load rocoto/1.3.0rc2
-elif [ "$MACHINE" = "LINUX" ]; then
+elif [ "$MACHINE" = "AWS" ]; then
   module purge
   module load rocoto
   module use /contrib/GST/hpc-modules/modulefiles/stack

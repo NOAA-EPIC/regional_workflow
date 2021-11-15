@@ -123,7 +123,7 @@ case "$MACHINE" in
     . /apps/lmod/lmod/init/sh
     ;;
 #
-  "LINUX")
+  "AWS")
     . /apps/lmod/lmod/init/sh
     module use /contrib/Mark.Potts/spack/share/spack/modules/linux-amzn2-skylake_avx512
     module use /contrib/GST/hpc-modules/modulefiles/stack

@@ -631,11 +631,10 @@ case $MACHINE in
     SCHED="none"
     ;;
 
-  "LINUX")
+  "AWS")
     WORKFLOW_MANAGER="rocoto"
     NCORES_PER_NODE=36
     SCHED="slurm"
-#   SCHED="none"
     ;;
 
 esac
@@ -981,7 +980,7 @@ case "$MACHINE" in
     FIXLAM_NCO_BASEDIR=${FIXLAM_NCO_BASEDIR:-"/needs/to/be/specified"}
     ;;
 
-  "LINUX")
+  "AWS")
     FIXgsm=${FIXgsm:-"/contrib/GST/fix/fix_am"}
     TOPO_DIR=${TOPO_DIR:-"/contrib/GST/fix/fix_orog"}
     SFC_CLIMO_INPUT_DIR=${SFC_CLIMO_INPUT_DIR:-"/contrib/GST/fix/fix_sfc_climo"}
