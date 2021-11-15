@@ -160,6 +160,7 @@ case "$MACHINE" in
 
   "LINUX")
 #   APRUN=$RUN_CMD_FCST
+    export OMP_NUM_THREADS=1
     APRUN="mpirun -np ${PE_MEMBER01}"
     ;;
 
