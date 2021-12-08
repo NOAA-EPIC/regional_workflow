@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 
 #
 #-----------------------------------------------------------------------
@@ -106,7 +106,7 @@ case "$MACHINE" in
   "ORION")
     ulimit -s unlimited
     ulimit -a
-    APRUN="srun"
+    APRUN="mpirun"
     ;;
 
   "JET")

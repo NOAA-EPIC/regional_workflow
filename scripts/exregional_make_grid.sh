@@ -1,5 +1,5 @@
 #!/bin/bash
-
+PATH=/opt/hpc-modules/gnu-9.3.0/openmpi-4.0.1/netcdf/4.7.4/bin:/opt/hpc-modules/gnu-9.3.0/openmpi-4.0.1/hdf5/1.10.6/bin:/opt/miniconda/envs/regional_workflow/bin:/opt/miniconda/condabin:/apps/python-3.7.5/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/miniconda/bin
 #
 #-----------------------------------------------------------------------
 #

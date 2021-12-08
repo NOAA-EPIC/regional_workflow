@@ -158,7 +158,7 @@ case "$MACHINE" in
     ;;
 
   "ORION")
-    APRUN="srun"
+    APRUN="mpirun"
     ;;
 
   "JET")

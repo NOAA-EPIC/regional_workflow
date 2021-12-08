@@ -187,7 +187,7 @@ MODULES_RUN_TASK_FP script.
     <jobname>&MAKE_GRID_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&MAKE_GRID_TN;.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
 
   </task>
 {%- endif %}
@@ -210,7 +210,7 @@ MODULES_RUN_TASK_FP script.
     <jobname>&MAKE_OROG_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&MAKE_OROG_TN;.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
 
     <dependency>
       <or>
@@ -237,7 +237,7 @@ MODULES_RUN_TASK_FP script.
     <jobname>&MAKE_SFC_CLIMO_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&MAKE_SFC_CLIMO_TN;.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
 
     <dependency>
       <and>
@@ -276,12 +276,12 @@ MODULES_RUN_TASK_FP script.
     <jobname>&GET_EXTRN_ICS_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&GET_EXTRN_ICS_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>EXTRN_MDL_NAME</name><value>{{ extrn_mdl_name_ics }}</value></envar>
-    <envar><name>ICS_OR_LBCS</name><value>ICS</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_EXTRN_MDL_NAME</name><value>{{ extrn_mdl_name_ics }}</value></envar>
+    <envar><name>SINGULARITYENV_ICS_OR_LBCS</name><value>ICS</value></envar>
 
   </task>
 <!--
@@ -304,12 +304,12 @@ MODULES_RUN_TASK_FP script.
     <jobname>&GET_EXTRN_LBCS_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&GET_EXTRN_LBCS_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>EXTRN_MDL_NAME</name><value>{{ extrn_mdl_name_lbcs }}</value></envar>
-    <envar><name>ICS_OR_LBCS</name><value>LBCS</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_EXTRN_MDL_NAME</name><value>{{ extrn_mdl_name_lbcs }}</value></envar>
+    <envar><name>SINGULARITYENV_ICS_OR_LBCS</name><value>LBCS</value></envar>
 
   </task>
 <!--
@@ -336,11 +336,11 @@ MODULES_RUN_TASK_FP script.
     <jobname>&MAKE_ICS_TN;{{ uscore_ensmem_name }}</jobname>
     <join><cyclestr>&LOGDIR;/&MAKE_ICS_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
 
     <dependency>
       <and>
@@ -378,11 +378,11 @@ MODULES_RUN_TASK_FP script.
     <jobname>&MAKE_LBCS_TN;{{ uscore_ensmem_name }}</jobname>
     <join><cyclestr>&LOGDIR;/&MAKE_LBCS_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
 
     <dependency>
       <and>
@@ -425,12 +425,12 @@ MODULES_RUN_TASK_FP script.
     <jobname>&RUN_FCST_TN;{{ uscore_ensmem_name }}</jobname>
     <join><cyclestr>&LOGDIR;/&RUN_FCST_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
-    <envar><name>ENSMEM_INDX</name><value><cyclestr>#{{ ensmem_indx_name }}#</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_ENSMEM_INDX</name><value><cyclestr>#{{ ensmem_indx_name }}#</cyclestr></value></envar>
 
     <dependency>
       <and>
@@ -474,14 +474,14 @@ later below for other output times.
       <jobname>&RUN_POST_TN;{{ uscore_ensmem_name }}_f#fhr##fmn#</jobname>
       <join><cyclestr>&LOGDIR;/&RUN_POST_TN;{{ uscore_ensmem_name }}_f#fhr##fmn#_@Y@m@d@H.log</cyclestr></join>
 
-      <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-      <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-      <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-      <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-      <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
-      <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-      <envar><name>fhr</name><value>#fhr#</value></envar>
-      <envar><name>fmn</name><value>#fmn#</value></envar>
+      <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+      <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_fhr</name><value>#fhr#</value></envar>
+      <envar><name>SINGULARITYENV_fmn</name><value>#fmn#</value></envar>
 
 <!--
 Note that because the forecast minutes and seconds corresponding to the
@@ -528,14 +528,14 @@ for other output times.
         <jobname>&RUN_POST_TN;{{ uscore_ensmem_name }}_f#fhr##fmn#</jobname>
         <join><cyclestr>&LOGDIR;/&RUN_POST_TN;{{ uscore_ensmem_name }}_f#fhr##fmn#_@Y@m@d@H.log</cyclestr></join>
 
-        <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-        <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-        <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-        <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-        <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
-        <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-        <envar><name>fhr</name><value>#fhr#</value></envar>
-        <envar><name>fmn</name><value>#fmn#</value></envar>
+        <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+        <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_fhr</name><value>#fhr#</value></envar>
+        <envar><name>SINGULARITYENV_fmn</name><value>#fmn#</value></envar>
 
         <dependency>
           <or>
@@ -592,17 +592,17 @@ always zero).
         <join><cyclestr>&LOGDIR;/&RUN_POST_TN;{{ uscore_ensmem_name }}_f#fhr#_@Y@m@d@H.log</cyclestr></join>
         {%- endif %}
 
-        <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-        <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-        <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-        <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-        <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
-        <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+        <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+        <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
         {%- if sub_hourly_post %}
-        <envar><name>fhr</name><value>#fhr#</value></envar>
-        <envar><name>fmn</name><value>#fmn#</value></envar>
+        <envar><name>SINGULARITYENV_fhr</name><value>#fhr#</value></envar>
+        <envar><name>SINGULARITYENV_fmn</name><value>#fmn#</value></envar>
         {%- else %}
-        <envar><name>fhr</name><value>#fhr#</value></envar>
+        <envar><name>SINGULARITYENV_fhr</name><value>#fhr#</value></envar>
         {%- endif %}
 
         <dependency>
@@ -655,14 +655,14 @@ the <task> tag to be identical to the ones above for other output times.
       <jobname>&RUN_POST_TN;{{ uscore_ensmem_name }}_f#fhr##fmn#</jobname>
       <join><cyclestr>&LOGDIR;/&RUN_POST_TN;{{ uscore_ensmem_name }}_f#fhr##fmn#_@Y@m@d@H.log</cyclestr></join>
 
-      <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-      <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-      <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-      <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-      <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
-      <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-      <envar><name>fhr</name><value>#fhr#</value></envar>
-      <envar><name>fmn</name><value>#fmn#</value></envar>
+      <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+      <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+      <envar><name>SINGULARITYENV_fhr</name><value>#fhr#</value></envar>
+      <envar><name>SINGULARITYENV_fmn</name><value>#fmn#</value></envar>
 
       <dependency>
         <or>
@@ -701,14 +701,14 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&GET_OBS_CCPA_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&GET_OBS_CCPA_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>ACCUM</name><value>01</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>01</value></envar>
 
   </task>
 {%- endif %}
@@ -734,15 +734,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&GET_OBS_MRMS_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&GET_OBS_MRMS_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>SCRIPTSDIR</name><value>&SCRIPTSDIR;</value></envar>
-    <envar><name>VAR</name><value>REFC RETOP</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SCRIPTSDIR</name><value>&SCRIPTSDIR;</value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>REFC RETOP</value></envar>
  
   </task>
 {%- endif %}
@@ -768,13 +768,13 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&GET_OBS_NDAS_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&GET_OBS_NDAS_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
 
   </task>
 {%- endif %}
@@ -794,17 +794,17 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_GRIDSTAT_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_GRIDSTAT_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>01</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>01</value></envar>
     {%- if do_ensemble %}
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
     {%- endif %}
 
     <dependency>
@@ -844,16 +844,16 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_GRIDSTAT_REFC_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_GRIDSTAT_REFC_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>REFC</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>REFC</value></envar>
     {%- if do_ensemble %}
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
     {%- endif %}
 
     <dependency>
@@ -893,16 +893,16 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_GRIDSTAT_RETOP_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_GRIDSTAT_RETOP_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>RETOP</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>RETOP</value></envar>
     {%- if do_ensemble %}
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
     {%- endif %}
 
     <dependency>
@@ -942,17 +942,17 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_GRIDSTAT_03h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_GRIDSTAT_03h_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(3, fcst_len_hrs+1, 3) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>03</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(3, fcst_len_hrs+1, 3) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>03</value></envar>
     {%- if do_ensemble %}
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
     {%- endif %}
 
     <dependency>
@@ -977,17 +977,17 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_GRIDSTAT_06h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_GRIDSTAT_06h_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(6, fcst_len_hrs+1, 6) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>06</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(6, fcst_len_hrs+1, 6) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>06</value></envar>
     {%- if do_ensemble %}
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
     {%- endif %}
 
     <dependency>
@@ -1012,17 +1012,17 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_GRIDSTAT_24h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_GRIDSTAT_24h_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(24, fcst_len_hrs+1, 24) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>24</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(24, fcst_len_hrs+1, 24) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>24</value></envar>
     {%- if do_ensemble %}
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
     {%- endif %}
 
     <dependency>
@@ -1047,15 +1047,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_POINTSTAT_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_POINTSTAT_TN;{{ uscore_ensmem_name }}_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
     {%- if do_ensemble %}
-    <envar><name>SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_SLASH_ENSMEM_SUBDIR</name><value><cyclestr>{{ slash_ensmem_subdir }}</cyclestr></value></envar>
     {%- endif %}
 
     <dependency>
@@ -1099,15 +1099,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>01</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>01</value></envar>
 
     <dependency>
       <metataskdep metatask="run_ensemble"/>
@@ -1131,15 +1131,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_03h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_03h_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(3, fcst_len_hrs+1, 3) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>03</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(3, fcst_len_hrs+1, 3) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>03</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_TN;"/>
@@ -1163,15 +1163,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_06h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_06h_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar> 
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(6, fcst_len_hrs+1, 6) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>06</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar> 
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(6, fcst_len_hrs+1, 6) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>06</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_TN;"/>
@@ -1195,15 +1195,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_24h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_24h_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(24, fcst_len_hrs+1, 24) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>24</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(24, fcst_len_hrs+1, 24) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>24</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_TN;"/>
@@ -1226,14 +1226,14 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_REFC_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_REFC_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>REFC</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>REFC</value></envar>
 
     <dependency>
       <metataskdep metatask="run_ensemble"/>
@@ -1256,14 +1256,14 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_RETOP_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_RETOP_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>RETOP</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>RETOP</value></envar>
 
     <dependency>
       <metataskdep metatask="run_ensemble"/>
@@ -1285,15 +1285,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_MEAN_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_MEAN_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>01</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>01</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_TN;"/>
@@ -1316,15 +1316,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_PROB_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_PROB_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>01</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>01</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_TN;"/>
@@ -1347,15 +1347,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_MEAN_03h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_MEAN_03h_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(3, fcst_len_hrs+1, 3) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>03</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(3, fcst_len_hrs+1, 3) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>03</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_03h_TN;"/>
@@ -1378,15 +1378,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_PROB_03h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_PROB_03h_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(3, fcst_len_hrs+1, 3) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>03</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(3, fcst_len_hrs+1, 3) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>03</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_03h_TN;"/>
@@ -1410,15 +1410,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_MEAN_06h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_MEAN_06h_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(6, fcst_len_hrs+1, 6) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>06</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(6, fcst_len_hrs+1, 6) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>06</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_06h_TN;"/>
@@ -1441,15 +1441,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_PROB_06h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_PROB_06h_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(6, fcst_len_hrs+1, 6) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>06</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(6, fcst_len_hrs+1, 6) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>06</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_06h_TN;"/>
@@ -1473,15 +1473,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_MEAN_24h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_MEAN_24h_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(24, fcst_len_hrs+1, 24) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>24</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(24, fcst_len_hrs+1, 24) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>24</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_24h_TN;"/>
@@ -1504,15 +1504,15 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_PROB_24h_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_PROB_24h_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(24, fcst_len_hrs+1, 24) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>APCP</value></envar>
-    <envar><name>ACCUM</name><value>24</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&CCPA_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(24, fcst_len_hrs+1, 24) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>APCP</value></envar>
+    <envar><name>SINGULARITYENV_ACCUM</name><value>24</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_24h_TN;"/>
@@ -1535,14 +1535,14 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_PROB_REFC_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_PROB_REFC_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>REFC</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>REFC</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_REFC_TN;"/>
@@ -1565,14 +1565,14 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSGRID_PROB_RETOP_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSGRID_PROB_RETOP_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
-    <envar><name>VAR</name><value>RETOP</value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&MRMS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(1, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_VAR</name><value>RETOP</value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSGRID_RETOP_TN;"/>
@@ -1596,13 +1596,13 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSPOINT_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSPOINT_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
 
     <dependency>
       <metataskdep metatask="run_ensemble"/>
@@ -1624,13 +1624,13 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSPOINT_MEAN_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSPOINT_MEAN_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSPOINT_TN;"/>
@@ -1652,13 +1652,13 @@ the <task> tag to be identical to the ones above for other output times.
     <jobname>&VX_ENSPOINT_PROB_TN;</jobname>
     <join><cyclestr>&LOGDIR;/&VX_ENSPOINT_PROB_TN;_@Y@m@d@H.log</cyclestr></join>
 
-    <envar><name>GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
-    <envar><name>OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
-    <envar><name>CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
-    <envar><name>PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
-    <envar><name>cyc</name><value><cyclestr>@H</cyclestr></value></envar>
-    <envar><name>FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_GLOBAL_VAR_DEFNS_FP</name><value>&GLOBAL_VAR_DEFNS_FP;</value></envar>
+    <envar><name>SINGULARITYENV_OBS_DIR</name><value>&NDAS_OBS_DIR;</value></envar>
+    <envar><name>SINGULARITYENV_CYCLE_DIR</name><value><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_PDY</name><value><cyclestr>@Y@m@d</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_cyc</name><value><cyclestr>@H</cyclestr></value></envar>
+    <envar><name>SINGULARITYENV_FHR</name><value><cyclestr> {% for h in range(0, fcst_len_hrs+1) %}{{ " %02d" % h  }}{% endfor %} </cyclestr></value></envar>
 
     <dependency>
       <taskdep task="&VX_ENSPOINT_TN;"/>

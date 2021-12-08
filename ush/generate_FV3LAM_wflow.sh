@@ -1,5 +1,5 @@
-#!/bin/bash
-
+#!/bin/bash -l
+set -x
 #
 #-----------------------------------------------------------------------
 #
@@ -61,6 +61,8 @@ ushdir="${scrfunc_dir}"
 
 # This line will return two numbers: the python major and minor versions
 pyversion=($(/usr/bin/env python3 -c 'import platform; major, minor, patch = platform.python_version_tuple(); print(major); print(minor)'))
+
+echo $pyversion
 
 #Now, set an error check variable so that we can print all python errors rather than just the first
 pyerrors=0
