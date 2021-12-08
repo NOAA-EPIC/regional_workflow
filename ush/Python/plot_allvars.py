@@ -580,7 +580,8 @@ for fhr in fhours:
     cm = matplotlib.colors.ListedColormap(colorlist)
     norm = matplotlib.colors.BoundaryNorm(clevs, cm.N)
 
-    cs_1 = plt.pcolormesh(lon_shift,lat_shift,wspd10m,transform=transform,cmap=cm,vmin=5,norm=norm)
+#   cs_1 = plt.pcolormesh(lon_shift,lat_shift,wspd10m,transform=transform,cmap=cm,vmin=5,norm=norm)
+    cs_1 = plt.pcolormesh(lon_shift,lat_shift,wspd10m,transform=transform,cmap=cm,norm=norm)
     cs_1.cmap.set_under('white',alpha=0.)
     cs_1.cmap.set_over('black')
     cbar1 = plt.colorbar(cs_1,orientation='horizontal',pad=0.05,shrink=0.6,ticks=clevs,extend='max')
@@ -612,7 +613,8 @@ for fhr in fhours:
     cm = matplotlib.colors.ListedColormap(colorlist)
     norm = matplotlib.colors.BoundaryNorm(clevs, cm.N)
 
-    cs_1 = plt.pcolormesh(lon_shift,lat_shift,cape,transform=transform,cmap=cm,vmin=100,norm=norm)
+#   cs_1 = plt.pcolormesh(lon_shift,lat_shift,cape,transform=transform,cmap=cm,vmin=100,norm=norm)
+    cs_1 = plt.pcolormesh(lon_shift,lat_shift,cape,transform=transform,cmap=cm,norm=norm)
     cs_1.cmap.set_under('white',alpha=0.)
     cs_1.cmap.set_over('black')
     cbar1 = plt.colorbar(cs_1,orientation='horizontal',pad=0.05,shrink=0.6,ticks=clevs,extend='max')
@@ -683,7 +685,8 @@ for fhr in fhours:
     cm = matplotlib.colors.ListedColormap(colorlist)
     norm = matplotlib.colors.BoundaryNorm(clevs, cm.N)
 
-    cs_1 = plt.pcolormesh(lon_shift,lat_shift,wspd250,transform=transform,cmap=cm,vmin=50,norm=norm)
+#   cs_1 = plt.pcolormesh(lon_shift,lat_shift,wspd250,transform=transform,cmap=cm,vmin=50,norm=norm)
+    cs_1 = plt.pcolormesh(lon_shift,lat_shift,wspd250,transform=transform,cmap=cm,norm=norm)
     cs_1.cmap.set_under('white',alpha=0.)
     cs_1.cmap.set_over('red')
     cbar1 = plt.colorbar(cs_1,orientation='horizontal',pad=0.05,shrink=0.6,ticks=clevs,extend='max')
@@ -715,7 +718,8 @@ for fhr in fhours:
       cm = matplotlib.colors.ListedColormap(colorlist)
       norm = matplotlib.colors.BoundaryNorm(clevs, cm.N)
 
-      cs_1 = plt.pcolormesh(lon_shift,lat_shift,qpf,transform=transform,cmap=cm,vmin=0.01,norm=norm)
+#     cs_1 = plt.pcolormesh(lon_shift,lat_shift,qpf,transform=transform,cmap=cm,vmin=0.01,norm=norm)
+      cs_1 = plt.pcolormesh(lon_shift,lat_shift,qpf,transform=transform,cmap=cm,vmin=0.01)
       cs_1.cmap.set_under('white',alpha=0.)
       cs_1.cmap.set_over('pink')
       cbar1 = plt.colorbar(cs_1,orientation='horizontal',pad=0.05,shrink=0.6,ticks=clevs,extend='max')
@@ -746,7 +750,8 @@ for fhr in fhours:
     cm = matplotlib.colors.ListedColormap(colorlist)
     norm = matplotlib.colors.BoundaryNorm(clevs, cm.N)
 
-    cs_1 = plt.pcolormesh(lon_shift,lat_shift,refc,transform=transform,cmap=cm,vmin=5,norm=norm)
+#   cs_1 = plt.pcolormesh(lon_shift,lat_shift,refc,transform=transform,cmap=cm,vmin=5,norm=norm)
+    cs_1 = plt.pcolormesh(lon_shift,lat_shift,refc,transform=transform,cmap=cm,vmin=5)
     cs_1.cmap.set_under('white',alpha=0.)
     cs_1.cmap.set_over('black')
     cbar1 = plt.colorbar(cs_1,orientation='horizontal',pad=0.05,shrink=0.6,ticks=clevs,extend='max')

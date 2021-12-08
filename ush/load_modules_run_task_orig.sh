@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -l
 
 set -x
 #
@@ -209,7 +209,7 @@ module list
 # now.
 if [ -n "${SRW_ENV:-}" ] ; then
   set +u
-  conda activate ${SRW_ENV}
+  /opt/miniconda/bin/conda activate ${SRW_ENV}
   set -u
 fi
 

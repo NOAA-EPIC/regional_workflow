@@ -14,18 +14,18 @@
 cd ${HOMErrfs}/ush/Python
 set -x
 
-source /etc/profile.d/modules.sh
+#source /etc/profile.d/modules.sh
 
 ############
 # Python environment for Cheyenne 
 ############
-ncar_pylib /glade/p/ral/jntp/UFS_SRW_app/ncar_pylib/python_graphics
+#ncar_pylib /glade/p/ral/jntp/UFS_SRW_app/ncar_pylib/python_graphics
 
 ############
 # Path to shape files
 ############
 #Cheyenne:
-SHAPE_FILES=/glade/p/ral/jntp/UFS_SRW_app/tools/NaturalEarth
+SHAPE_FILES=/opt/NaturalEarth
 
 export GLOBAL_VAR_DEFNS_FP="${EXPTDIR}/var_defns.sh"
 source ${GLOBAL_VAR_DEFNS_FP}
