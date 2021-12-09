@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/bash
 
 #
 #-----------------------------------------------------------------------
@@ -105,7 +105,7 @@ case "$MACHINE" in
 
   "ORION")
     ulimit -s unlimited
-    APRUN="mpirun"
+    APRUN="srun"
     ;;
 
   "JET")
@@ -131,8 +131,12 @@ case "$MACHINE" in
     ;;
 
   "LINUX")
-    ulimit -s unlimited
     APRUN=$RUN_CMD_UTILS
+    ;;
+
+  "AWS")
+    nprocs=$(( NNODES_MAKE_LBCS*PPN_MAKE_LBCS ))
+    APRUN="mpirun -np $nprocs"
     ;;
 
   *)

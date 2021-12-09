@@ -127,7 +127,7 @@ case "$MACHINE" in
   "ORION")
     ulimit -s unlimited
     ulimit -a
-    APRUN="mpirun"
+    APRUN="srun"
     ;;
 
   "JET")
@@ -159,9 +159,13 @@ case "$MACHINE" in
     ;;
 
   "LINUX")
-    ulimit -s unlimited
-    ulimit -a
     APRUN=$RUN_CMD_FCST
+    ;;
+
+  "AWS")
+#   APRUN=$RUN_CMD_FCST
+    export OMP_NUM_THREADS=1
+    APRUN="mpirun -np ${PE_MEMBER01}"
     ;;
 
   *)

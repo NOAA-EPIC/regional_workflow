@@ -158,7 +158,7 @@ case "$MACHINE" in
     ;;
 
   "ORION")
-    APRUN="mpirun"
+    APRUN="srun"
     ;;
 
   "JET")
@@ -186,6 +186,11 @@ case "$MACHINE" in
 
   "LINUX")
     APRUN=$RUN_CMD_UTILS
+    ;;
+
+  "AWS")
+    nprocs=$(( NNODES_MAKE_SFC_CLIMO*PPN_MAKE_SFC_CLIMO ))
+    APRUN="mpirun -np $nprocs"
     ;;
 
   *)

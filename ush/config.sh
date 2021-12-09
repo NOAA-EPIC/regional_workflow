@@ -1,5 +1,6 @@
 MACHINE="AWS"
 ACCOUNT="none"
+COMPILER="gcc"
 EXPT_SUBDIR="test_srw"
 EXPT_BASEDIR="/lustre/expt_dirs"
 

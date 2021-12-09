@@ -153,8 +153,10 @@ case "$MACHINE" in
 
   "LINUX")
     APRUN=time
-    ulimit -s unlimited
-    ulimit -a
+    ;;
+
+  "AWS")
+    APRUN=time
     ;;
 
   *)

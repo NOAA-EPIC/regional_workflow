@@ -92,6 +92,10 @@ case "$MACHINE" in
     . /apps/lmod/lmod/init/sh
     ;;
 #
+  "AWS")
+    . /usr/share/lmod/lmod/init/sh
+    ;;
+#
   "ORION")
     . /usr/share/lmod/lmod/init/sh
     ;;

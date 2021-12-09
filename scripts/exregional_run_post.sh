@@ -125,9 +125,7 @@ case "$MACHINE" in
     ;;
 
   "ORION")
-    ulimit -s unlimited
-    ulimit -a
-    APRUN="mpirun"
+    APRUN="srun"
     ;;
 
   "JET")
@@ -151,6 +149,12 @@ case "$MACHINE" in
 
   "MACOS")
     APRUN=$RUN_CMD_POST
+    ;;
+
+  "AWS")
+    module list
+    nprocs=$(( NNODES_RUN_POST*PPN_RUN_POST ))
+    APRUN="mpirun -np $nprocs"
     ;;
 
   "LINUX")
