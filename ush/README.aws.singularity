@@ -1,0 +1,25 @@
+The feature/singularity branch of the regional workflow is designed to work on NOAA's AWS instance. To run through
+the workflow, follow these steps.
+
+copy the singularity container ubuntu20.04-epic-srwapp from /contrib/GST to /lustre
+
+copy /lustre/ubuntu20.04/opt/ufs-srweather-app to /lustre as well
+
+shell into the container with this command
+singularity shell -e -w -B /lustre:/lustre -B /home:/home -B /contrib:/contrib ubuntu20.04-epic-srwapp
+
+source /contrib/GST/.bashrc
+cd /lustre/ufs-srweather-app/regional_workflow/ufs
+
+git pull origin feature/singularity
+
+conda activate regional_workflow
+
+./generate_FV3LAM_wflow.sh 
+
+Now, either exit the container or from another window on AWS, cd to /lustre/expt_dirs/test_srw
+
+module load rocoto
+
+Run through the workflow using rocotorun -w FV3LAM_wflow.xml -d FV3LAM_wflow.db -v 10
+
