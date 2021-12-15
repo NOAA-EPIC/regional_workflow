@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/opt/hpc-modules/core/miniconda3/4.6.14/envs/regional_workflow/bin/python
+###!/usr/bin/env python3
 
 '''
 This utility updates a Fortran namelist file using the f90nml package. The

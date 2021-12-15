@@ -165,7 +165,8 @@ case "$MACHINE" in
   "AWS")
 #   APRUN=$RUN_CMD_FCST
     export OMP_NUM_THREADS=1
-    APRUN="mpirun -np ${PE_MEMBER01}"
+    APRUN="mpirun -np ${PE_MEMBER01} /opt/bin/ufs_model"
+#   APRUN="mpirun -np ${PE_MEMBER01} singularity exec -e -B /home:/home -B /lustre:/lustre -B /contrib:/contrib /lustre/ubuntu20.04-epic-srwapp /opt/bin/ufs_model"
     ;;
 
   *)
