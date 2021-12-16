@@ -147,6 +147,10 @@ case "$MACHINE" in
     APRUN=time
     ;;
 
+  "SINGULARITY")
+    APRUN=time
+    ;;
+
   *)
     print_err_msg_exit "\
 Run command has not been specified for this machine:

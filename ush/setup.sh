@@ -641,6 +641,12 @@ case $MACHINE in
     SCHED="slurm"
     ;;
 
+  "SINGULARITY")
+    WORKFLOW_MANAGER=${WORKFLOW_MANAGER:-"none"}
+    NCORES_PER_NODE=8
+    SCHED=${SCHED:-"none"}
+    ;;
+
   "LINUX")
     WORKFLOW_MANAGER=${WORKFLOW_MANAGER:-"none"}
     SCHED=${SCHED:-"none"}
@@ -1004,6 +1010,13 @@ case "$MACHINE" in
     FIXgsm=${FIXgsm:-"/contrib/GST/fix/fix_am"}
     TOPO_DIR=${TOPO_DIR:-"/contrib/GST/fix/fix_orog"}
     SFC_CLIMO_INPUT_DIR=${SFC_CLIMO_INPUT_DIR:-"/contrib/GST/fix/fix_sfc_climo"}
+    FIXLAM_NCO_BASEDIR=${FIXLAM_NCO_BASEDIR:-"/needs/to/be/specified"}
+    ;;
+
+  "SINGULARITY")
+    FIXgsm=${FIXgsm:-"${HOME}/GST/fix/fix_am"}
+    TOPO_DIR=${TOPO_DIR:-"${HOME}/GST/fix/fix_orog"}
+    SFC_CLIMO_INPUT_DIR=${SFC_CLIMO_INPUT_DIR:-"${HOME}/GST/fix/fix_sfc_climo"}
     FIXLAM_NCO_BASEDIR=${FIXLAM_NCO_BASEDIR:-"/needs/to/be/specified"}
     ;;
 

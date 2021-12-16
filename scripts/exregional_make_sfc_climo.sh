@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 #
 #-----------------------------------------------------------------------
 #
@@ -186,6 +186,10 @@ case "$MACHINE" in
 
   "LINUX")
     APRUN=$RUN_CMD_UTILS
+    ;;
+
+  "SINGULARITY")
+    APRUN="mpirun -n 1 "
     ;;
 
   "AWS")

@@ -134,6 +134,11 @@ case "$MACHINE" in
     APRUN=$RUN_CMD_UTILS
     ;;
 
+  "SINGULARITY")
+    nprocs=2
+    APRUN="mpirun -n $nprocs"
+    ;;
+
   "AWS")
     nprocs=2
     APRUN="mpirun -n $nprocs"

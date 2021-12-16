@@ -134,6 +134,11 @@ case "$MACHINE" in
     APRUN=$RUN_CMD_UTILS
     ;;
 
+  "SINGULARITY")
+    nprocs=$(( NNODES_MAKE_LBCS*PPN_MAKE_LBCS ))
+    APRUN="mpirun -np $nprocs"
+    ;;
+
   "AWS")
     nprocs=$(( NNODES_MAKE_LBCS*PPN_MAKE_LBCS ))
     APRUN="mpirun -np $nprocs"

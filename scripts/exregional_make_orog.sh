@@ -155,6 +155,10 @@ case "$MACHINE" in
     APRUN=time
     ;;
 
+  "SINGULARITY")
+    APRUN=time
+    ;;
+
   "AWS")
     APRUN=time
     ;;

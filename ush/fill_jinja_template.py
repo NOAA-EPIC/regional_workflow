@@ -1,5 +1,4 @@
-#!/opt/hpc-modules/core/miniconda3/4.6.14/envs/regional_workflow/bin/python
-###!/usr/bin/env python3
+#!/usr/bin/env python3
 
 '''
 This utility fills in a user-supplied Jinja template from either a YAML file, or
