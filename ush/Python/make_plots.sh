@@ -1,10 +1,4 @@
 #!/bin/sh
-#PBS -A an_account 
-#PBS -q regular
-#PBS -l select=1:mpiprocs=24:ncpus=24
-#PBS -l walltime=00:20:00
-#PBS -N plot_allvars
-#PBS -j oe -o plot_allvars.out 
 
 # Prior to submitting the script the following environment variables
 # must be set using export or setenv

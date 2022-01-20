@@ -1,0 +1,132 @@
+#Log in to AWS.
+#set up your environment by copying in .bashrc and other files from /contrib/GST using script called link-files
+#and then source your .bashrc file (this prepares the conda environment system used by the regional workflow
+
+/contrib/GST/link-files
+source .bashrc
+
+#The SRW app and regional workflow are staged in /contrib/GST/ufs-srweather-app. Copy the entire directory
+#to /lustre/$USER -- the copy command will take a little while
+
+mkdir /lustre/$USER
+cd /lustre/$USER
+cp -r /contrib/GST/ufs-srweather-app .
+
+#cd to the ush directory
+
+cd /lustre/$USER/ufs-srweather-app/regional_workflow/ush
+
+#activate the regional workflow conda environment
+
+conda activate regional_workflow
+
+#We will be using a pre-configured 25KM resolution CONUS forecast to start. This is a re-forecast for the CONUS
+#from June 15, 2019. 
+#Copy the config.sh.lowres file to config.sh
+
+cp config.sh.lowres config.sh
+
+#We'll talk about what is in the configuration file in a minute, but lets generate the workflow and get it 
+#started before we do that
+
+./generate_FV3LAM_wflow.sh 
+
+#This script creates an experiment directory and populates it will all the data need to run through the workflow
+#The last line is a crontab entry that everyone should paste into their crontab. Copy the entire line starting with
+#*/1 and then run the following--
+
+crontab -e
+
+#Type "i" to enter insert mode and then paste the line into the buffer. Hit escape and then type ":wq" to save
+#and quit. This will tell cron to run the command you pasted into the buffer ever minute. 
+#once you have the cron job set up, cd to your experiment directory
+
+cd /lustre/$USER/expt_dir/GST_lowres
+
+#From the experiment directory, you can check on the status of you workflow
+
+module load rocoto
+
+#only need to load the rocoto module once
+
+rocotostat -w FV3LAM_wflow.xml -d FV3LAM_wflow.db -v 10
+
+#As the workflow progresses through its stages, rocotostate will show the state of the process
+
+#We can now go generate a new experiment that will re-run the same forecast, but at a higher 
+#resolution focusing on a small area around Indianapolis, which saw some extreme weather
+#that day. Cd back to your ush directory
+
+cd /lustre/$USER/ufs-srweather-app/regional_workflow/ush
+
+#Now copy the config.sh.hires to config.sh
+
+cp config.sh.hires config.sh
+
+#Again, we will look at what this contains in a minute, but lets generate a new experiment and 
+#get it running
+
+./generate_FV3LAM_wflow.sh 
+
+#Copy the slightly different cron entry from the end of that output into crontab again
+
+crontab -e
+
+#This line should be added just after the previous entry. Again, use "i" to insert, escape
+#after pasting, and ":wq" to save and quit
+
+#Now we will look at the differences between the two configurations. Run the following to 
+#follow along
+
+vimdiff config.sh.lowres config.sh.hires
+
+#We have mainly changed the physics suite, which will no longer parameterize convection
+#and changed both the resolution (now 3km vs. 25km) and the domain (now centered on Indianapolis)
+#Use :qa to quit out of vimdiff
+#The first experiment should now be finished, so cd back to that directory
+
+cd /lustre/$USER/expt_dir/GST_lowres
+
+#We will now make some plots from the post processed files from the first forecast. They are located in 
+#/lustre/$USER/expt_dir/GST_lowres/20190615/postprd
+#Set some environment variables used by the plotting routine
+
+export HOMErrfs=/lustre/$USER/ufs-srweather-app/regional_workflow
+export EXPTDIR=/lustre/$USER/expt_dir/GST_lowres
+
+#cd to the postprd directory
+cd /lustre/$USER/expt_dir/GST_lowres/20190615/postprd
+
+#Run the plotting routine located in $HOMErrfs/ush/Python
+
+$HOMErrfs/ush/Python/make_plots.sh
+
+#When this completes, there will be a series of png files that can be viewed with any image viewer
+#Transfer them from aws to your local machine
+
+#locally--
+mkdir lowres_plots
+cd lowres_plots
+scp aws:"/lustre/$USER/expt_dir/GST_lowres/20190615/postprd/*.png" .
+
+#Open with an image viewer 
+
+#Check on status of hires experiment
+
+cd /lustre/$USER/expt_dir/GST_hires
+rocotostat -w FV3LAM_wflow.xml -d FV3LAM_wflow.db -v 10
+
+#Once the hires workflow is complete, plots for those results can be created by running through 
+#the same sequence as above, but changing the EXPTDIR.
+
+export EXPTDIR=/lustre/$USER/expt_dir/GST_hires
+cd $EXPTDIR
+$HOMErrfs/ush/Python/make_plots.sh
+
+#New png files can also be transferred to your local machine and viewed using an image viewer
+
+#locally--
+mkdir hires_plots
+cd hires_plots
+scp aws:"/lustre/$USER/expt_dir/GST_hires/20190615/postprd/*.png" .
+

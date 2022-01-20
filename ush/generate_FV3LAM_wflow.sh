@@ -941,11 +941,11 @@ Note that:
 "
 fi
 print_info_msg "
-For automatic resubmission of the workflow (say every 3 minutes), the
+For automatic resubmission of the workflow (say every minute), the
 following line can be added to the user's crontab (use \"crontab -e\" to
 edit the cron table):
 
-*/3 * * * * cd $EXPTDIR && ./launch_FV3LAM_wflow.sh
+*/1 * * * * cd $EXPTDIR && /apps/rocoto/1.3.3/bin/rocotorun -w FV3LAM_wflow.xml -d FV3LAM_wflow.db -v 10
 
 Done.
 "

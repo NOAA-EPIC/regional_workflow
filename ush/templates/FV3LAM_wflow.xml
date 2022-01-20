@@ -613,8 +613,12 @@ always zero).
               <datadep age="05:00"><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H{{ slash_ensmem_subdir }}/dynf#fhr#:#fmn#:00.nc</cyclestr></datadep>
               <datadep age="05:00"><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H{{ slash_ensmem_subdir }}/phyf#fhr#:#fmn#:00.nc</cyclestr></datadep>
             {%- else %}
-              <datadep age="05:00"><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H{{ slash_ensmem_subdir }}/dynf#fhr#.nc</cyclestr></datadep>
+<!--
+              <datadep age="05:00"><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H{{ slash_ensmem_subdir }}/dynf#fhr#.nc</cyclestr></datadep> 
               <datadep age="05:00"><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H{{ slash_ensmem_subdir }}/phyf#fhr#.nc</cyclestr></datadep>
+-->
+              <datadep age="05:00"><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H{{ slash_ensmem_subdir }}/dynf{{ fcst_len_hrs }}.nc</cyclestr></datadep>
+              <datadep age="05:00"><cyclestr>&CYCLE_BASEDIR;/@Y@m@d@H{{ slash_ensmem_subdir }}/phyf{{ fcst_len_hrs }}.nc</cyclestr></datadep>
             {%- endif %}
             </and>
           </or>
