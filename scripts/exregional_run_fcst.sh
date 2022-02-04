@@ -164,12 +164,12 @@ case "$MACHINE" in
 
   "SINGULARITY")
     export OMP_NUM_THREADS=1
-    APRUN="mpirun -np ${PE_MEMBER01} /opt/bin/ufs_model"
+    APRUN="mpirun -np ${PE_MEMBER01}"
     ;;
 
   "AWS")
     export OMP_NUM_THREADS=1
-    APRUN="mpirun -np ${PE_MEMBER01} /opt/bin/ufs_model"
+    APRUN="mpirun -np ${PE_MEMBER01}"
     ;;
 
   *)
