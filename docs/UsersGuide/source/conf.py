@@ -53,6 +53,9 @@ extensions = [
     'sphinxcontrib.bibtex'
 ]
 
+# If a bibliography is added, it will be referred to as refs.bib
+bibtex_bibfiles = ['refs.bib']
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
