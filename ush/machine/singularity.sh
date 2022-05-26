@@ -44,12 +44,20 @@ PARTITION_FCST=${PARTITION_FCST:-""}
 QUEUE_FCST=${QUEUE_FCST:-"batch"}
 
 # UFS SRW App specific paths
-FIXgsm=${FIXgsm:-"/contrib/global/glopara/fix/fix_am"}
-FIXaer=${FIXaer:-"/contrib/global/glopara/fix/fix_aer"}
-FIXlut=${FIXlut:-"/contrib/global/glopara/fix/fix_lut"}
-TOPO_DIR=${TOPO_DIR:-"/contrib/global/glopara/fix/fix_orog"}
-SFC_CLIMO_INPUT_DIR=${SFC_CLIMO_INPUT_DIR:-"/contrib/global/glopara/fix/fix_sfc_climo"}
-DOMAIN_PREGEN_BASEDIR=${DOMAIN_PREGEN_BASEDIR:-"/needs/to/be/specified"}
+#FIXgsm=${FIXgsm:-"/contrib/GST/glopara/fix/fix_am"}
+#FIXaer=${FIXaer:-"/contrib/global/glopara/fix/fix_aer"}
+#FIXlut=${FIXlut:-"/contrib/global/glopara/fix/fix_lut"}
+#TOPO_DIR=${TOPO_DIR:-"/contrib/global/glopara/fix/fix_orog"}
+#SFC_CLIMO_INPUT_DIR=${SFC_CLIMO_INPUT_DIR:-"/contrib/global/glopara/fix/fix_sfc_climo"}
+#DOMAIN_PREGEN_BASEDIR=${DOMAIN_PREGEN_BASEDIR:-"/needs/to/be/specified"}
+staged_data_dir="/contrib/GST/model_data"
+FIXgsm=${FIXgsm:-"${staged_data_dir}/fix/fix_am"}
+FIXaer=${FIXaer:-"${staged_data_dir}/fix/fix_aer"}
+FIXlut=${FIXlut:-"${staged_data_dir}/fix/fix_lut"}
+TOPO_DIR=${TOPO_DIR:-"${staged_data_dir}/fix/fix_orog"}
+SFC_CLIMO_INPUT_DIR=${SFC_CLIMO_INPUT_DIR:-"${staged_data_dir}/fix/fix_sfc_climo"}
+TEST_EXTRN_MDL_SOURCE_BASEDIR="${staged_data_dir}"
+
 
 # Run commands for executables
 RUN_CMD_SERIAL="time"
