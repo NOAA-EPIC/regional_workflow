@@ -7,7 +7,7 @@
 MACHINE="AMI"
 ACCOUNT="none"
 COMPILER="gnu"
-EXPT_SUBDIR="GST_INDY_v16"
+EXPT_SUBDIR="GST_lowres_rocoto"
 EXPT_BASEDIR="/home/$USER/expt_dirs"
 
 NNODES_MAKE_OROG="2"
@@ -79,7 +79,6 @@ EXTRN_MDL_SOURCE_BASEDIR_LBCS="/contrib/GST/model_data/RAP"
 EXTRN_MDL_FILES_LBCS=( "rap.wrfprsf06.grib2" )
  
 # Define custom grid.
-POST_OUTPUT_DOMAIN_NAME="Indy"
 GRID_GEN_METHOD="ESGgrid"
 QUILTING="TRUE"
 
