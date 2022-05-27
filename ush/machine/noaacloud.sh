@@ -45,11 +45,11 @@ PRE_TASK_CMDS='{ ulimit -s unlimited; ulimit -a; }'
 
 # Architecture information
 WORKFLOW_MANAGER="rocoto"
-NCORES_PER_NODE=${NCORES_PER_NODE:-16}
+NCORES_PER_NODE=${NCORES_PER_NODE:-36}
 SCHED=${SCHED:-"slurm"}
 
 # UFS SRW App specific paths
-staged_data_dir="/contrib/GST/model_data"
+staged_data_dir="/contrib/EPIC/UFS_SRW_App/develop"
 FIXgsm=${FIXgsm:-"${staged_data_dir}/fix/fix_am"}
 FIXaer=${FIXaer:-"${staged_data_dir}/fix/fix_aer"}
 FIXlut=${FIXlut:-"${staged_data_dir}/fix/fix_lut"}
@@ -65,13 +65,10 @@ RUN_CMD_SERIAL="time"
 RUN_CMD_UTILS='mpiexec -np $nprocs'
 RUN_CMD_FCST='mpiexec -np ${PE_MEMBER01}'
 RUN_CMD_POST='mpiexec -np $nprocs'
-#RUN_CMD_UTILS='srun --mpi=pmi2 -n $nprocs'
-#RUN_CMD_FCST='srun --mpi=pmi2 -n ${PE_MEMBER01}'
-#RUN_CMD_POST='srun --mpi=pmi2 -n $nprocs'
 
 export build_mod_fn="wflow_noaacloud"
 BUILD_MOD_FN="wflow_noaacloud"
 
 # MET Installation Locations
 # MET Plus is not yet supported on noaacloud
-. ~/.bashrc
+. /contrib/EPIC/.bash_conda

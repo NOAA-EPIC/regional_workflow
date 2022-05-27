@@ -4,8 +4,7 @@
 # (if different from the default location), and the name of the experiment
 # subdirectory.
 #
-#MACHINE="NOAACLOUD"
-MACHINE="NOAACLOUD"
+MACHINE="AMI"
 ACCOUNT="none"
 COMPILER="gnu"
 EXPT_SUBDIR="GST_lowres_rocoto"
@@ -87,7 +86,7 @@ LAYOUT_X="${LAYOUT_X:-5}"
 LAYOUT_Y="${LAYOUT_Y:-6}"
 
 # Set maximum number of retries in case of failure
-MAXTRIES_MAKE_GRID="1"
+MAXTRIES_MAKE_GRID="2"
 MAXTRIES_MAKE_OROG="1"
 MAXTRIES_MAKE_SFC_CLIMO="1"
 MAXTRIES_GET_EXTRN_ICS="1"
