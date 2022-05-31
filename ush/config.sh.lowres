@@ -7,7 +7,7 @@
 MACHINE="AMI"
 ACCOUNT="none"
 COMPILER="gnu"
-EXPT_SUBDIR="GST_lowres_rocoto"
+EXPT_SUBDIR="GST_lowres"
 EXPT_BASEDIR="/home/$USER/expt_dirs"
 
 NNODES_MAKE_ICS="1"

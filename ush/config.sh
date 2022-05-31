@@ -7,14 +7,13 @@
 MACHINE="AMI"
 ACCOUNT="none"
 COMPILER="gnu"
-EXPT_SUBDIR="GST_INDY_v16"
+EXPT_SUBDIR="GST_lowres_rocoto"
 EXPT_BASEDIR="/home/$USER/expt_dirs"
 
-NNODES_MAKE_OROG="2"
-NNODES_MAKE_ICS="2"
-NNODES_MAKE_LBCS="2"
+NNODES_MAKE_ICS="1"
+NNODES_MAKE_LBCS="1"
 NNODES_RUN_POST="1"
-NNODES_MAKE_SFC_CLIMO="2"
+NNODES_MAKE_SFC_CLIMO="1"
 OMP_NUM_THREADS_RUN_FCST="1"
 OMP_STACKSIZE_RUN_FCST="1024m"
 PPN_MAKE_ICS="2"
@@ -31,7 +30,6 @@ PREEXISTING_DIR_METHOD="rename"
 
 
 
-#
 # Flag specifying whether or not to automatically resubmit the worfklow
 # to the batch system via cron and, if so, the frequency (in minutes) of
 # resubmission.
@@ -46,16 +44,16 @@ VERBOSE="TRUE"
 # TEST PURPOSE/DESCRIPTION:
 # ------------------------
 #
-# Testing a custom grid for the AMS 2022 SRW Workshop.
+# Starting with a 25km pre-defined grid for the AMS 2022 SRW Workshop.
 #
 
 RUN_ENVIR="community"
 PREEXISTING_DIR_METHOD="rename"
 
-CCPP_PHYS_SUITE="FV3_GFS_v16"
+CCPP_PHYS_SUITE="FV3_GFS_v15p2"
 
-EXTRN_MDL_NAME_ICS="HRRR"
-EXTRN_MDL_NAME_LBCS="RAP"
+EXTRN_MDL_NAME_ICS="FV3GFS"
+EXTRN_MDL_NAME_LBCS="FV3GFS"
 USE_USER_STAGED_EXTRN_FILES="TRUE"
 
 DATE_FIRST_CYCL="20190615"
@@ -67,55 +65,25 @@ FV3GFS_FILE_FMT_LBCS="grib2"
 
 FCST_LEN_HRS="6"
 LBC_SPEC_INTVL_HRS="6"
-WTIME_RUN_FCST="01:30:00"
+WTIME_RUN_FCST="00:30:00"
 #
 # Locations and names of user-staged external model files for generating
 # ICs and LBCs.
 #
 USE_USER_STAGED_EXTRN_FILES="TRUE"
-EXTRN_MDL_SOURCE_BASEDIR_ICS="/contrib/GST/model_data/HRRR"
-EXTRN_MDL_FILES_ICS=( "hrrr.wrfprsf00.grib2" )
-EXTRN_MDL_SOURCE_BASEDIR_LBCS="/contrib/GST/model_data/RAP"
-EXTRN_MDL_FILES_LBCS=( "rap.wrfprsf06.grib2" )
- 
-# Define custom grid.
-POST_OUTPUT_DOMAIN_NAME="Indy"
+EXTRN_MDL_SOURCE_BASEDIR_ICS="/contrib/GST/model_data/FV3GFS"
+EXTRN_MDL_FILES_ICS=( "gfs.pgrb2.0p25.f000" )
+EXTRN_MDL_SOURCE_BASEDIR_LBCS="/contrib/GST/model_data/FV3GFS"
+EXTRN_MDL_FILES_LBCS=( "gfs.pgrb2.0p25.f006" "gfs.pgrb2.0p25.f012" )
+
+# use predefined CONUS 25km grid
+PREDEF_GRID_NAME="RRFS_CONUS_25km"
 GRID_GEN_METHOD="ESGgrid"
 QUILTING="TRUE"
 
-ESGgrid_LON_CTR="-86.16"
-ESGgrid_LAT_CTR="39.77"
-
-ESGgrid_DELX="3000.0"
-ESGgrid_DELY="3000.0"
-
-ESGgrid_NX="200"
-ESGgrid_NY="200"
-
-ESGgrid_PAZI="0.0"
-
-ESGgrid_WIDE_HALO_WIDTH="6"
-DT_ATMOS="${DT_ATMOS:-40}"
 # Set the layout of the domain decomposition
 LAYOUT_X="${LAYOUT_X:-5}"
 LAYOUT_Y="${LAYOUT_Y:-6}"
-BLOCKSIZE="${BLOCKSIZE:-40}"
-
-
-WRTCMP_write_groups="1"
-WRTCMP_write_tasks_per_group=$(( 1*LAYOUT_Y ))
-WRTCMP_output_grid="lambert_conformal"
-WRTCMP_cen_lon="${ESGgrid_LON_CTR}"
-WRTCMP_cen_lat="${ESGgrid_LAT_CTR}"
-WRTCMP_stdlat1="${ESGgrid_LAT_CTR}"
-WRTCMP_stdlat2="${ESGgrid_LAT_CTR}"
-WRTCMP_nx="197"
-WRTCMP_ny="197"
-WRTCMP_lon_lwr_left="-89.47120417"
-WRTCMP_lat_lwr_left="37.07809642"
-WRTCMP_dx="${ESGgrid_DELX}"
-WRTCMP_dy="${ESGgrid_DELY}"
-
 
 # Set maximum number of retries in case of failure
 MAXTRIES_MAKE_GRID="2"
