@@ -45,7 +45,7 @@ PRE_TASK_CMDS='{ ulimit -s unlimited; ulimit -a; }'
 
 # Architecture information
 WORKFLOW_MANAGER="rocoto"
-NCORES_PER_NODE=${NCORES_PER_NODE:-16}
+NCORES_PER_NODE=${NCORES_PER_NODE:-72}
 SCHED=${SCHED:-"slurm"}
 
 # UFS SRW App specific paths

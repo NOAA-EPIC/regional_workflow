@@ -227,6 +227,7 @@ parser.add_argument("Ending forecast hour")
 parser.add_argument("Forecast hour increment")
 parser.add_argument("Path to experiment directory")
 parser.add_argument("Path to base directory of cartopy shapefiles")
+parser.add_argument("Name of post files")
 args = parser.parse_args()
 
 # Read date/time, forecast hour, and directory paths from command line
@@ -252,6 +253,7 @@ print(fhours)
 
 EXPT_DIR = str(sys.argv[5])
 CARTOPY_DIR = str(sys.argv[6])
+POST_OUTPUT_DOMAIN_NAME = str(sys.argv[7])
 
 # Loop over forecast hours
 for fhr in fhours:
@@ -261,7 +263,7 @@ for fhr in fhours:
   vtime = ndate(itime,int(fhr))
 
 # Define the location of the input file
-  data1 = pygrib.open(EXPT_DIR+'/'+ymdh+'/postprd/rrfs.t'+cyc+'z.prslevf'+fhour+'.tm00.grib2')
+  data1 = pygrib.open(EXPT_DIR+'/'+ymdh+'/postprd/rrfs.t'+cyc+'z.prslev.f'+fhour+'.'+POST_OUTPUT_DOMAIN_NAME+'.grib2')
 
 # Get the lats and lons
   grids = [data1]

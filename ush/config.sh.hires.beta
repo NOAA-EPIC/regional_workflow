@@ -4,31 +4,32 @@
 # (if different from the default location), and the name of the experiment
 # subdirectory.
 #
-MACHINE="NOAACLOUD"
+MACHINE="AMI"
 ACCOUNT="none"
-EXPT_SUBDIR="GST_hires_beta"
-EXPT_BASEDIR="/lustre/$USER/expt_dirs"
+COMPILER="gnu"
+EXPT_SUBDIR="GST_INDY_v1beta"
+EXPT_BASEDIR="/home/$USER/expt_dirs"
 
-VERBOSE="TRUE"
-
+NNODES_MAKE_OROG="1"
 NNODES_MAKE_ICS="1"
 NNODES_MAKE_LBCS="1"
 NNODES_RUN_POST="1"
 NNODES_MAKE_SFC_CLIMO="1"
 OMP_NUM_THREADS_RUN_FCST="1"
 OMP_STACKSIZE_RUN_FCST="1024m"
-PPN_MAKE_ICS="2"
-PPN_MAKE_LBCS="2"
+PPN_MAKE_ICS="36"
+PPN_MAKE_LBCS="36"
 PPN_RUN_POST="2"
+PPN_MAKE_GRID="16"
+PPN_MAKE_OROG="12"
+PPN_MAKE_SFC_CLIMO="36"
+PARTITION_DEFAULT=""
+QUEUE_DEFAULT=""
 
 RUN_ENVIR="community"
 PREEXISTING_DIR_METHOD="rename"
 
 
-FV3GFS_FILE_FMT_ICS="grib2"
-FV3GFS_FILE_FMT_LBCS="grib2"
-
-WTIME_RUN_FCST="00:30:00"
 
 #
 # Flag specifying whether or not to automatically resubmit the worfklow
@@ -42,11 +43,6 @@ CRON_RELAUNCH_INTVL_MNTS="01"
 #
 VERBOSE="TRUE"
 #
-#-----------------------------------------------------------------------
-#-----------------------------------------------------------------------
-# The following section is a copy of this WE2E test's configuration file.
-#
-#
 # TEST PURPOSE/DESCRIPTION:
 # ------------------------
 #
@@ -57,6 +53,7 @@ RUN_ENVIR="community"
 PREEXISTING_DIR_METHOD="rename"
 
 CCPP_PHYS_SUITE="FV3_RRFS_v1beta"
+POST_OUTPUT_DOMAIN_NAME="INDY"
 
 EXTRN_MDL_NAME_ICS="HRRR"
 EXTRN_MDL_NAME_LBCS="RAP"
@@ -71,6 +68,7 @@ FV3GFS_FILE_FMT_LBCS="grib2"
 
 FCST_LEN_HRS="6"
 LBC_SPEC_INTVL_HRS="6"
+WTIME_RUN_FCST="01:30:00"
 #
 # Locations and names of user-staged external model files for generating
 # ICs and LBCs.
@@ -80,9 +78,8 @@ EXTRN_MDL_SOURCE_BASEDIR_ICS="/contrib/GST/model_data/HRRR"
 EXTRN_MDL_FILES_ICS=( "hrrr.wrfprsf00.grib2" )
 EXTRN_MDL_SOURCE_BASEDIR_LBCS="/contrib/GST/model_data/RAP"
 EXTRN_MDL_FILES_LBCS=( "rap.wrfprsf06.grib2" )
-#
+ 
 # Define custom grid.
-#
 GRID_GEN_METHOD="ESGgrid"
 QUILTING="TRUE"
 
@@ -99,10 +96,11 @@ ESGgrid_PAZI="0.0"
 
 ESGgrid_WIDE_HALO_WIDTH="6"
 DT_ATMOS="${DT_ATMOS:-40}"
-
-LAYOUT_X="${LAYOUT_X:-5}"
-LAYOUT_Y="${LAYOUT_Y:-6}"
+# Set the layout of the domain decomposition
+LAYOUT_X="${LAYOUT_X:-8}"
+LAYOUT_Y="${LAYOUT_Y:-8}"
 BLOCKSIZE="${BLOCKSIZE:-40}"
+
 
 WRTCMP_write_groups="1"
 WRTCMP_write_tasks_per_group=$(( 1*LAYOUT_Y ))
@@ -119,7 +117,8 @@ WRTCMP_dx="${ESGgrid_DELX}"
 WRTCMP_dy="${ESGgrid_DELY}"
 
 
-MAXTRIES_MAKE_GRID="1"
+# Set maximum number of retries in case of failure
+MAXTRIES_MAKE_GRID="2"
 MAXTRIES_MAKE_OROG="1"
 MAXTRIES_MAKE_SFC_CLIMO="1"
 MAXTRIES_GET_EXTRN_ICS="1"
