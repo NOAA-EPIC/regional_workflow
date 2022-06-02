@@ -7,7 +7,7 @@
 MACHINE="AMI"
 ACCOUNT="none"
 COMPILER="gnu"
-EXPT_SUBDIR="GST_lowres"
+EXPT_SUBDIR="GST_CONUS"
 EXPT_BASEDIR="/home/$USER/expt_dirs"
 
 NNODES_MAKE_ICS="1"
@@ -20,15 +20,10 @@ PPN_MAKE_ICS="16"
 PPN_MAKE_LBCS="16"
 PPN_RUN_POST="2"
 PPN_MAKE_GRID="16"
-PPN_MAKE_OROG="16"
-PPN_MAKE_SFC_CLIMO="16"
+PPN_MAKE_OROG="36"
+PPN_MAKE_SFC_CLIMO="36"
 PARTITION_DEFAULT=""
 QUEUE_DEFAULT=""
-
-RUN_ENVIR="community"
-PREEXISTING_DIR_METHOD="rename"
-
-
 
 # Flag specifying whether or not to automatically resubmit the worfklow
 # to the batch system via cron and, if so, the frequency (in minutes) of
@@ -50,7 +45,7 @@ VERBOSE="TRUE"
 RUN_ENVIR="community"
 PREEXISTING_DIR_METHOD="rename"
 
-CCPP_PHYS_SUITE="FV3_GFS_v15p2"
+CCPP_PHYS_SUITE="FV3_GFS_v16"
 
 EXTRN_MDL_NAME_ICS="FV3GFS"
 EXTRN_MDL_NAME_LBCS="FV3GFS"

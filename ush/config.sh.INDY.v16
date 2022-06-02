@@ -26,11 +26,6 @@ PPN_MAKE_SFC_CLIMO="36"
 PARTITION_DEFAULT=""
 QUEUE_DEFAULT=""
 
-RUN_ENVIR="community"
-PREEXISTING_DIR_METHOD="rename"
-
-
-
 #
 # Flag specifying whether or not to automatically resubmit the worfklow
 # to the batch system via cron and, if so, the frequency (in minutes) of
