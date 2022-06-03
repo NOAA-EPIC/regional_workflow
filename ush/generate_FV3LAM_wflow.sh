@@ -624,7 +624,8 @@ Copying fixed files from system directory (FIXgsm) to a subdirectory
   num_files=${#FIXgsm_FILES_TO_COPY_TO_FIXam[@]}
   for (( i=0; i<${num_files}; i++ )); do
     fn="${FIXgsm_FILES_TO_COPY_TO_FIXam[$i]}"
-    cp_vrfy "$FIXgsm/$fn" "$FIXam/$fn"
+#   cp_vrfy "$FIXgsm/$fn" "$FIXam/$fn"
+    ln_vrfy -fsn "$FIXgsm/$fn" "$FIXam/$fn"
   done
 
 fi
