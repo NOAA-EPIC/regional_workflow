@@ -1,15 +1,139 @@
 #
+#-----------------------------------------------------------------------
+#
+# DESCRIPTION:
+# -----------
+#
+# This SRW App configuration file is runs the App on a predefined 25km
+# grid over the CONUS using the GFS_v16 physics suite and the FV3GFS as
+# the external model for generating both initial and boundary conditions.
+#
+#-----------------------------------------------------------------------
+#
+
+#
+#-----------------------------------------------------------------------
+#
 # The machine on which to run, the account to which to charge computational
 # resources, the base directory in which to create the experiment directory
 # (if different from the default location), and the name of the experiment
 # subdirectory.
 #
+#-----------------------------------------------------------------------
+#
 MACHINE="AMI"
 ACCOUNT="none"
 COMPILER="gnu"
-EXPT_SUBDIR="GST_CONUS"
 EXPT_BASEDIR="/home/$USER/expt_dirs"
+EXPT_SUBDIR="GST_CONUS_25km"
+#
+#-----------------------------------------------------------------------
+#
+# Set the run environment to "community".  This determines the directory
+# structure used for the experiment.  Setting this to "community" will
+# result in a single directory for the experiment.  The default option
+# is "nco"; it will result in a more complex directory structure suited
+# for operations.
+#
+# Also, specify (via PREEXISTING_DIR_METHOD) that existing experiment
+# directories will be renamed, not deleted.  The default is to delete
+# experiment directories that have the same name as the current one.
+#
+#-----------------------------------------------------------------------
+#
+RUN_ENVIR="community"
+PREEXISTING_DIR_METHOD="rename"
+#
+#-----------------------------------------------------------------------
+#
+# The physics suite.
+#
+#-----------------------------------------------------------------------
+#
+CCPP_PHYS_SUITE="FV3_GFS_v16"
+#
+#-----------------------------------------------------------------------
+#
+# The external models to use for generating initial and boundary conditions,
+# the locations and names of user-staged external model files, and the
+# formats of those files.
+#
+#-----------------------------------------------------------------------
+#
+EXTRN_MDL_NAME_ICS="FV3GFS"
+EXTRN_MDL_NAME_LBCS="FV3GFS"
 
+USE_USER_STAGED_EXTRN_FILES="TRUE"
+EXTRN_MDL_SOURCE_BASEDIR_ICS="/contrib/GST/model_data/FV3GFS"
+EXTRN_MDL_FILES_ICS=( "gfs.pgrb2.0p25.f000" )
+EXTRN_MDL_SOURCE_BASEDIR_LBCS="/contrib/GST/model_data/FV3GFS"
+EXTRN_MDL_FILES_LBCS=( "gfs.pgrb2.0p25.f006" "gfs.pgrb2.0p25.f012" )
+
+FV3GFS_FILE_FMT_ICS="grib2"
+FV3GFS_FILE_FMT_LBCS="grib2"
+#
+#-----------------------------------------------------------------------
+#
+# Cycles (i.e. dates and hours of the day) on which to run the forecast
+# model, the forecast length, and the frequency with which to update the
+# lateral boundary conditions (LBCs).
+#
+#-----------------------------------------------------------------------
+#
+DATE_FIRST_CYCL="20190615"
+DATE_LAST_CYCL="20190615"
+CYCL_HRS=( "18" )
+
+FCST_LEN_HRS="6"
+LBC_SPEC_INTVL_HRS="6"
+#
+#-----------------------------------------------------------------------
+#
+# Use predefined CONUS 25km grid and specify the MPI domain decomposition
+# to override the grid's defaults.
+#
+#-----------------------------------------------------------------------
+#
+PREDEF_GRID_NAME="RRFS_CONUS_25km"
+
+LAYOUT_X="${LAYOUT_X:-8}"
+LAYOUT_Y="${LAYOUT_Y:-8}"
+#
+#-----------------------------------------------------------------------
+#
+# Flag specifying whether or not to automatically resubmit the worfklow
+# to the batch system via cron and, if so, the frequency (in minutes) of
+# resubmission.
+#
+#-----------------------------------------------------------------------
+#
+USE_CRON_TO_RELAUNCH="TRUE"
+CRON_RELAUNCH_INTVL_MNTS="01"
+#
+#-----------------------------------------------------------------------
+#
+# Maximum number of times to try rerunning each ROCOTO task in case of
+# failure.
+#
+#-----------------------------------------------------------------------
+#
+MAXTRIES_MAKE_GRID="2"
+MAXTRIES_MAKE_OROG="1"
+MAXTRIES_MAKE_SFC_CLIMO="1"
+MAXTRIES_GET_EXTRN_ICS="1"
+MAXTRIES_GET_EXTRN_LBCS="1"
+MAXTRIES_MAKE_ICS="2"
+MAXTRIES_MAKE_LBCS="2"
+MAXTRIES_RUN_FCST="1"
+MAXTRIES_RUN_POST="2"
+#
+#-----------------------------------------------------------------------
+#
+# Computational resources.
+#
+#-----------------------------------------------------------------------
+#
+NNODES_MAKE_OROG="1"
 NNODES_MAKE_ICS="1"
 NNODES_MAKE_LBCS="1"
 NNODES_RUN_POST="1"
@@ -20,73 +144,8 @@ PPN_MAKE_ICS="16"
 PPN_MAKE_LBCS="16"
 PPN_RUN_POST="2"
 PPN_MAKE_GRID="16"
-PPN_MAKE_OROG="36"
-PPN_MAKE_SFC_CLIMO="36"
+PPN_MAKE_OROG="16"
+PPN_MAKE_SFC_CLIMO="16"
 PARTITION_DEFAULT=""
 QUEUE_DEFAULT=""
-
-# Flag specifying whether or not to automatically resubmit the worfklow
-# to the batch system via cron and, if so, the frequency (in minutes) of
-# resubmission.
-#
-USE_CRON_TO_RELAUNCH="TRUE"
-CRON_RELAUNCH_INTVL_MNTS="01"
-#
-# Flag specifying whether to run in verbose mode.
-#
-VERBOSE="TRUE"
-#
-# TEST PURPOSE/DESCRIPTION:
-# ------------------------
-#
-# Starting with a 25km pre-defined grid for the AMS 2022 SRW Workshop.
-#
-
-RUN_ENVIR="community"
-PREEXISTING_DIR_METHOD="rename"
-
-CCPP_PHYS_SUITE="FV3_GFS_v16"
-
-EXTRN_MDL_NAME_ICS="FV3GFS"
-EXTRN_MDL_NAME_LBCS="FV3GFS"
-USE_USER_STAGED_EXTRN_FILES="TRUE"
-
-DATE_FIRST_CYCL="20190615"
-DATE_LAST_CYCL="20190615"
-CYCL_HRS=( "18" )
-
-FV3GFS_FILE_FMT_ICS="grib2"
-FV3GFS_FILE_FMT_LBCS="grib2"
-
-FCST_LEN_HRS="6"
-LBC_SPEC_INTVL_HRS="6"
 WTIME_RUN_FCST="00:30:00"
-#
-# Locations and names of user-staged external model files for generating
-# ICs and LBCs.
-#
-USE_USER_STAGED_EXTRN_FILES="TRUE"
-EXTRN_MDL_SOURCE_BASEDIR_ICS="/contrib/GST/model_data/FV3GFS"
-EXTRN_MDL_FILES_ICS=( "gfs.pgrb2.0p25.f000" )
-EXTRN_MDL_SOURCE_BASEDIR_LBCS="/contrib/GST/model_data/FV3GFS"
-EXTRN_MDL_FILES_LBCS=( "gfs.pgrb2.0p25.f006" "gfs.pgrb2.0p25.f012" )
-
-# use predefined CONUS 25km grid
-PREDEF_GRID_NAME="RRFS_CONUS_25km"
-GRID_GEN_METHOD="ESGgrid"
-QUILTING="TRUE"
-
-# Set the layout of the domain decomposition
-LAYOUT_X="${LAYOUT_X:-8}"
-LAYOUT_Y="${LAYOUT_Y:-8}"
-
-# Set maximum number of retries in case of failure
-MAXTRIES_MAKE_GRID="2"
-MAXTRIES_MAKE_OROG="1"
-MAXTRIES_MAKE_SFC_CLIMO="1"
-MAXTRIES_GET_EXTRN_ICS="1"
-MAXTRIES_GET_EXTRN_LBCS="1"
-MAXTRIES_MAKE_ICS="2"
-MAXTRIES_MAKE_LBCS="2"
-MAXTRIES_RUN_FCST="1"
-MAXTRIES_RUN_POST="2"

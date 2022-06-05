@@ -1,15 +1,177 @@
 #
+#-----------------------------------------------------------------------
+#
+# DESCRIPTION:
+# -----------
+#
+# This SRW App configuration file is runs the App on a custom 3km grid
+# over Indianapolis using the GFS_v16 physics suite and the FV3GFS as
+# the external model for generating both initial and boundary conditions.
+#
+#-----------------------------------------------------------------------
+#
+
+#
+#-----------------------------------------------------------------------
+#
 # The machine on which to run, the account to which to charge computational
 # resources, the base directory in which to create the experiment directory
 # (if different from the default location), and the name of the experiment
 # subdirectory.
 #
+#-----------------------------------------------------------------------
+#
 MACHINE="AMI"
 ACCOUNT="none"
 COMPILER="gnu"
-EXPT_SUBDIR="GST_INDY_v16"
 EXPT_BASEDIR="/home/$USER/expt_dirs"
+EXPT_SUBDIR="GST_INDY_v16"
+#
+#-----------------------------------------------------------------------
+#
+# Set the run environment to "community".  This determines the directory
+# structure used for the experiment.  Setting this to "community" will
+# result in a single directory for the experiment.  The default option
+# is "nco"; it will result in a more complex directory structure suited
+# for operations.
+#
+# Also, specify (via PREEXISTING_DIR_METHOD) that existing experiment
+# directories will be renamed, not deleted.  The default is to delete
+# experiment directories that have the same name as the current one.
+#
+#-----------------------------------------------------------------------
+#
+RUN_ENVIR="community"
+PREEXISTING_DIR_METHOD="rename"
+#
+#-----------------------------------------------------------------------
+#
+# The physics suite.
+#
+#-----------------------------------------------------------------------
+#
+CCPP_PHYS_SUITE="FV3_GFS_v16"
+#
+#-----------------------------------------------------------------------
+#
+# The external models to use for generating initial and boundary conditions,
+# the locations and names of user-staged external model files, and the
+# formats of those files.
+#
+#-----------------------------------------------------------------------
+#
+EXTRN_MDL_NAME_ICS="FV3GFS"
+EXTRN_MDL_NAME_LBCS="FV3GFS"
 
+USE_USER_STAGED_EXTRN_FILES="TRUE"
+EXTRN_MDL_SOURCE_BASEDIR_ICS="/contrib/GST/model_data/FV3GFS"
+EXTRN_MDL_FILES_ICS=( "gfs.pgrb2.0p25.f000" )
+EXTRN_MDL_SOURCE_BASEDIR_LBCS="/contrib/GST/model_data/FV3GFS"
+EXTRN_MDL_FILES_LBCS=( "gfs.pgrb2.0p25.f006" "gfs.pgrb2.0p25.f012" )
+
+FV3GFS_FILE_FMT_ICS="grib2"
+FV3GFS_FILE_FMT_LBCS="grib2"
+#
+#-----------------------------------------------------------------------
+#
+# Cycles (i.e. dates and hours of the day) on which to run the forecast
+# model, the forecast length, and the frequency with which to update the
+# lateral boundary conditions (LBCs).
+#
+#-----------------------------------------------------------------------
+#
+DATE_FIRST_CYCL="20190615"
+DATE_LAST_CYCL="20190615"
+CYCL_HRS=( "18" )
+
+FCST_LEN_HRS="6"
+LBC_SPEC_INTVL_HRS="6"
+#
+#-----------------------------------------------------------------------
+#
+# Define custom native grid.  This is a 3km ESG (Extended Schmidt Gnomonic)
+# grid centered over Indianapolis.
+#
+#-----------------------------------------------------------------------
+#
+POST_OUTPUT_DOMAIN_NAME="INDY"
+GRID_GEN_METHOD="ESGgrid"
+
+ESGgrid_LON_CTR="-86.16"
+ESGgrid_LAT_CTR="39.77"
+
+ESGgrid_DELX="3000.0"
+ESGgrid_DELY="3000.0"
+
+ESGgrid_NX="200"
+ESGgrid_NY="200"
+
+ESGgrid_PAZI="0.0"
+
+ESGgrid_WIDE_HALO_WIDTH="6"
+DT_ATMOS="${DT_ATMOS:-40}"
+#
+# Specify the native grid's MPI domain decomposition.
+#
+LAYOUT_X="${LAYOUT_X:-8}"
+LAYOUT_Y="${LAYOUT_Y:-8}"
+BLOCKSIZE="${BLOCKSIZE:-40}"
+#
+#-----------------------------------------------------------------------
+#
+# Define write-component grid corresponding to native grid above.
+#
+#-----------------------------------------------------------------------
+#
+QUILTING="TRUE"
+WRTCMP_write_groups="1"
+WRTCMP_write_tasks_per_group=$(( 1*LAYOUT_Y ))
+WRTCMP_output_grid="lambert_conformal"
+WRTCMP_cen_lon="${ESGgrid_LON_CTR}"
+WRTCMP_cen_lat="${ESGgrid_LAT_CTR}"
+WRTCMP_stdlat1="${ESGgrid_LAT_CTR}"
+WRTCMP_stdlat2="${ESGgrid_LAT_CTR}"
+WRTCMP_nx="197"
+WRTCMP_ny="197"
+WRTCMP_lon_lwr_left="-89.47120417"
+WRTCMP_lat_lwr_left="37.07809642"
+WRTCMP_dx="${ESGgrid_DELX}"
+WRTCMP_dy="${ESGgrid_DELY}"
+#
+#-----------------------------------------------------------------------
+#
+# Flag specifying whether or not to automatically resubmit the worfklow
+# to the batch system via cron and, if so, the frequency (in minutes) of
+# resubmission.
+#
+#-----------------------------------------------------------------------
+#
+USE_CRON_TO_RELAUNCH="TRUE"
+CRON_RELAUNCH_INTVL_MNTS="01"
+#
+#-----------------------------------------------------------------------
+#
+# Maximum number of times to try rerunning each ROCOTO task in case of
+# failure.
+#
+#-----------------------------------------------------------------------
+#
+MAXTRIES_MAKE_GRID="2"
+MAXTRIES_MAKE_OROG="1"
+MAXTRIES_MAKE_SFC_CLIMO="1"
+MAXTRIES_GET_EXTRN_ICS="1"
+MAXTRIES_GET_EXTRN_LBCS="1"
+MAXTRIES_MAKE_ICS="2"
+MAXTRIES_MAKE_LBCS="2"
+MAXTRIES_RUN_FCST="1"
+MAXTRIES_RUN_POST="2"
+#
+#-----------------------------------------------------------------------
+#
+# Computational resources.
+#
+#-----------------------------------------------------------------------
+#
 NNODES_MAKE_OROG="1"
 NNODES_MAKE_ICS="1"
 NNODES_MAKE_LBCS="1"
@@ -25,100 +187,4 @@ PPN_MAKE_OROG="12"
 PPN_MAKE_SFC_CLIMO="36"
 PARTITION_DEFAULT=""
 QUEUE_DEFAULT=""
-
-#
-# Flag specifying whether or not to automatically resubmit the worfklow
-# to the batch system via cron and, if so, the frequency (in minutes) of
-# resubmission.
-#
-USE_CRON_TO_RELAUNCH="TRUE"
-CRON_RELAUNCH_INTVL_MNTS="01"
-#
-# Flag specifying whether to run in verbose mode.
-#
-VERBOSE="TRUE"
-#
-# TEST PURPOSE/DESCRIPTION:
-# ------------------------
-#
-# Testing a custom grid for the AMS 2022 SRW Workshop.
-#
-
-RUN_ENVIR="community"
-PREEXISTING_DIR_METHOD="rename"
-
-CCPP_PHYS_SUITE="FV3_GFS_v16"
-POST_OUTPUT_DOMAIN_NAME="INDY"
-
-EXTRN_MDL_NAME_ICS="HRRR"
-EXTRN_MDL_NAME_LBCS="RAP"
-USE_USER_STAGED_EXTRN_FILES="TRUE"
-
-DATE_FIRST_CYCL="20190615"
-DATE_LAST_CYCL="20190615"
-CYCL_HRS=( "18" )
-
-FV3GFS_FILE_FMT_ICS="grib2"
-FV3GFS_FILE_FMT_LBCS="grib2"
-
-FCST_LEN_HRS="6"
-LBC_SPEC_INTVL_HRS="6"
 WTIME_RUN_FCST="01:30:00"
-#
-# Locations and names of user-staged external model files for generating
-# ICs and LBCs.
-#
-USE_USER_STAGED_EXTRN_FILES="TRUE"
-EXTRN_MDL_SOURCE_BASEDIR_ICS="/contrib/GST/model_data/HRRR"
-EXTRN_MDL_FILES_ICS=( "hrrr.wrfprsf00.grib2" )
-EXTRN_MDL_SOURCE_BASEDIR_LBCS="/contrib/GST/model_data/RAP"
-EXTRN_MDL_FILES_LBCS=( "rap.wrfprsf06.grib2" )
- 
-# Define custom grid.
-GRID_GEN_METHOD="ESGgrid"
-QUILTING="TRUE"
-
-ESGgrid_LON_CTR="-86.16"
-ESGgrid_LAT_CTR="39.77"
-
-ESGgrid_DELX="3000.0"
-ESGgrid_DELY="3000.0"
-
-ESGgrid_NX="200"
-ESGgrid_NY="200"
-
-ESGgrid_PAZI="0.0"
-
-ESGgrid_WIDE_HALO_WIDTH="6"
-DT_ATMOS="${DT_ATMOS:-40}"
-# Set the layout of the domain decomposition
-LAYOUT_X="${LAYOUT_X:-8}"
-LAYOUT_Y="${LAYOUT_Y:-8}"
-BLOCKSIZE="${BLOCKSIZE:-40}"
-
-
-WRTCMP_write_groups="1"
-WRTCMP_write_tasks_per_group=$(( 1*LAYOUT_Y ))
-WRTCMP_output_grid="lambert_conformal"
-WRTCMP_cen_lon="${ESGgrid_LON_CTR}"
-WRTCMP_cen_lat="${ESGgrid_LAT_CTR}"
-WRTCMP_stdlat1="${ESGgrid_LAT_CTR}"
-WRTCMP_stdlat2="${ESGgrid_LAT_CTR}"
-WRTCMP_nx="197"
-WRTCMP_ny="197"
-WRTCMP_lon_lwr_left="-89.47120417"
-WRTCMP_lat_lwr_left="37.07809642"
-WRTCMP_dx="${ESGgrid_DELX}"
-WRTCMP_dy="${ESGgrid_DELY}"
-
-
-# Set maximum number of retries in case of failure
-MAXTRIES_MAKE_GRID="2"
-MAXTRIES_MAKE_OROG="1"
-MAXTRIES_MAKE_SFC_CLIMO="1"
-MAXTRIES_GET_EXTRN_ICS="1"
-MAXTRIES_GET_EXTRN_LBCS="1"
-MAXTRIES_MAKE_ICS="2"
-MAXTRIES_MAKE_LBCS="2"
-MAXTRIES_RUN_FCST="1"
-MAXTRIES_RUN_POST="2"

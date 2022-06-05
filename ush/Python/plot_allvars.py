@@ -9,7 +9,7 @@
 #           David Wright 	Org: University of Michigan
 #
 # Instructions:		Make sure all the necessary modules can be imported.
-#                       Six command line arguments are needed:
+#                       The following command line arguments are needed:
 #                       1. Cycle date/time in YYYYMMDDHH format
 #                       2. Starting forecast hour
 #                       3. Ending forecast hour
@@ -26,12 +26,16 @@
 #                            CARTOPY_DIR/shapefiles/natural_earth/cultural/*.shp
 #                          -More information regarding files needed to setup
 #                            display maps in Cartopy, see SRW App Users' Guide
+#                       7. POST_OUTPUT_DOMAIN_NAME:  Name of native domain
+#                          used in forecast and in constructing the names 
+#                          of the post output files.
 #
-#           		To create plots for forecast hours 20-24 from 5/7 00Z
-#                        cycle with hourly output:
+#           		To create plots for a forecast on the RRFS_CONUS_25km
+#                       grid for hours 20-24 from the 5/7 00Z cycle with 
+#                       hourly output:
 #                          python plot_allvars.py 2020050700 20 24 1 \
 #                          /path/to/expt_dirs/experiment/name \
-#                          /path/to/base/cartopy/maps
+#                          /path/to/base/cartopy/maps RRFS_CONUS_25km
 #
 #                       The variable domains in this script can be set to either
 #                         'conus' for a CONUS map or 'regional' where the map
@@ -133,29 +137,6 @@ def cmap_t2m():
     return cmap_t2m_coltbl
 
 
-def cmap_q2m():
- # Create colormap for 2-m dew point temperature
-    r=np.array([255,179,96,128,0, 0,  51, 0,  0,  0,  133,51, 70, 0,  128,128,180])
-    g=np.array([255,179,96,128,92,128,153,155,155,255,162,102,70, 0,  0,  0,  0])
-    b=np.array([255,179,96,0,  0, 0,  102,155,255,255,255,255,255,128,255,128,128])
-    xsize=np.arange(np.size(r))
-    r = r/255.
-    g = g/255.
-    b = b/255.
-    red = []
-    green = []
-    blue = []
-    for i in range(len(xsize)):
-        xNorm=np.float(i)/(np.float(np.size(r))-1.0)
-        red.append([xNorm,r[i],r[i]])
-        green.append([xNorm,g[i],g[i]])
-        blue.append([xNorm,b[i],b[i]])
-    colorDict = {"red":red, "green":green, "blue":blue}
-    cmap_q2m_coltbl = matplotlib.colors.LinearSegmentedColormap('CMAP_Q2M_COLTBL',colorDict)
-    cmap_q2m_coltbl.set_over(color='deeppink')
-    return cmap_q2m_coltbl
-
-
 def rotate_wind(true_lat,lov_lon,earth_lons,uin,vin,proj,inverse=False):
   #  Rotate winds from LCC relative to earth relative (or vice-versa if inverse==true)
   #   This routine is vectorized and *should* work on any size 2D vg and ug arrays.
@@ -227,7 +208,7 @@ parser.add_argument("Ending forecast hour")
 parser.add_argument("Forecast hour increment")
 parser.add_argument("Path to experiment directory")
 parser.add_argument("Path to base directory of cartopy shapefiles")
-parser.add_argument("Name of post files")
+parser.add_argument("Name of native domain used in forecast (and in constructing post file names)")
 args = parser.parse_args()
 
 # Read date/time, forecast hour, and directory paths from command line
@@ -253,7 +234,7 @@ print(fhours)
 
 EXPT_DIR = str(sys.argv[5])
 CARTOPY_DIR = str(sys.argv[6])
-POST_OUTPUT_DOMAIN_NAME = str(sys.argv[7])
+POST_OUTPUT_DOMAIN_NAME = str(sys.argv[7]).lower()
 
 # Loop over forecast hours
 for fhr in fhours:
@@ -330,10 +311,6 @@ for fhr in fhours:
 # 2-m temperature
   tmp2m = data1.select(name='2 metre temperature')[0].values
   tmp2m = (tmp2m - 273.15)*1.8 + 32.0
-
-# 2-m dew point temperature
-  dew2m = data1.select(name='2 metre dewpoint temperature')[0].values
-  dew2m = (dew2m - 273.15)*1.8 + 32.0
 
 # 10-m wind speed
   uwind = data1.select(name='10 metre U wind component')[0].values * 1.94384
@@ -532,33 +509,6 @@ for fhr in fhours:
     t2 = time.perf_counter()
     t3 = round(t2-t1, 3)
     print(('%.3f seconds to plot 2mt for: '+dom) % t3)
-
-
-#################################
-  # Plot 2-m Dew Point
-#################################
-    t1 = time.perf_counter()
-    print(('Working on 2mdew for '+dom))
-
-  # Clear off old plottables but keep all the map info
-    cbar1.remove()
-    clear_plotables(ax,keep_ax_lst,fig)
-
-    units = '\xb0''F'
-    clevs = np.linspace(-5,80,35)
-    cm = cmap_q2m()
-    norm = matplotlib.colors.BoundaryNorm(clevs, cm.N)
-
-    cs_1 = plt.pcolormesh(lon_shift,lat_shift,dew2m,transform=transform,cmap=cm,norm=norm)
-    cbar1 = plt.colorbar(cs_1,orientation='horizontal',pad=0.05,shrink=0.6,extend='both')
-    cbar1.set_label(units,fontsize=8)
-    cbar1.ax.tick_params(labelsize=8)
-    ax.text(.5,1.03,'FV3-LAM 2-m Dew Point Temperature ('+units+') \n initialized: '+itime+' valid: '+vtime + ' (f'+fhour+')',horizontalalignment='center',fontsize=8,transform=ax.transAxes,bbox=dict(facecolor='white',alpha=0.85,boxstyle='square,pad=0.2'))
-
-    compress_and_save(EXPT_DIR+'/'+ymdh+'/postprd/2mdew_'+dom+'_f'+fhour+'.png')
-    t2 = time.perf_counter()
-    t3 = round(t2-t1, 3)
-    print(('%.3f seconds to plot 2mdew for: '+dom) % t3)
 
 
 #################################

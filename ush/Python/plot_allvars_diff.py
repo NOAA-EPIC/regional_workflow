@@ -9,7 +9,7 @@
 #           David Wright 	Org: University of Michigan
 #
 # Instructions:		Make sure all the necessary modules can be imported.
-#                       Seven command line arguments are needed:
+#                       The following command line arguments are needed:
 #                       1. Cycle date/time in YYYYMMDDHH format
 #                       2. Starting forecast hour
 #                       3. Ending forecast hour
@@ -139,29 +139,6 @@ def cmap_t2m():
     colorDict = {"red":red, "green":green, "blue":blue}
     cmap_t2m_coltbl = matplotlib.colors.LinearSegmentedColormap('CMAP_T2M_COLTBL',colorDict)
     return cmap_t2m_coltbl
-
-
-def cmap_q2m():
- # Create colormap for 2-m dew point temperature
-    r=np.array([255,179,96,128,0, 0,  51, 0,  0,  0,  133,51, 70, 0,  128,128,180])
-    g=np.array([255,179,96,128,92,128,153,155,155,255,162,102,70, 0,  0,  0,  0])
-    b=np.array([255,179,96,0,  0, 0,  102,155,255,255,255,255,255,128,255,128,128])
-    xsize=np.arange(np.size(r))
-    r = r/255.
-    g = g/255.
-    b = b/255.
-    red = []
-    green = []
-    blue = []
-    for i in range(len(xsize)):
-        xNorm=np.float(i)/(np.float(np.size(r))-1.0)
-        red.append([xNorm,r[i],r[i]])
-        green.append([xNorm,g[i],g[i]])
-        blue.append([xNorm,b[i],b[i]])
-    colorDict = {"red":red, "green":green, "blue":blue}
-    cmap_q2m_coltbl = matplotlib.colors.LinearSegmentedColormap('CMAP_Q2M_COLTBL',colorDict)
-    cmap_q2m_coltbl.set_over(color='deeppink')
-    return cmap_q2m_coltbl
 
 
 def rotate_wind(true_lat,lov_lon,earth_lons,uin,vin,proj,inverse=False):
@@ -352,13 +329,6 @@ for fhr in fhours:
   tmp2m_2 = data2.select(name='2 metre temperature')[0].values
   tmp2m_2 = (tmp2m_2 - 273.15)*1.8 + 32.0
   tmp2m_diff = tmp2m_2 - tmp2m_1
-
-# 2-m dew point temperature
-  dew2m_1 = data1.select(name='2 metre dewpoint temperature')[0].values
-  dew2m_1 = (dew2m_1 - 273.15)*1.8 + 32.0
-  dew2m_2 = data2.select(name='2 metre dewpoint temperature')[0].values
-  dew2m_2 = (dew2m_2 - 273.15)*1.8 + 32.0
-  dew2m_diff = dew2m_2 - dew2m_1
 
 # 10-m wind speed
   uwind_1 = data1.select(name='10 metre U wind component')[0].values * 1.94384
@@ -649,53 +619,6 @@ for fhr in fhours:
     t2 = time.perf_counter()
     t3 = round(t2-t1, 3)
     print(('%.3f seconds to plot 2mt for: '+dom) % t3)
-
-
-#################################
-  # Plot 2-m Dew Point
-#################################
-    t1 = time.perf_counter()
-    print(('Working on 2mdew for '+dom))
-
-  # Clear off old plottables but keep all the map info
-    cbar1.remove()
-    cbar2.remove()
-    cbar3.remove()
-    clear_plotables(ax1,keep_ax_lst_1,fig)
-    clear_plotables(ax2,keep_ax_lst_2,fig)
-    clear_plotables(ax3,keep_ax_lst_3,fig)
-
-    units = '\xb0''F'
-    clevs = np.linspace(-5,80,35)
-    clevsdiff = [-12,-10,-8,-6,-4,-2,0,2,4,6,8,10,12]
-    cm = cmap_q2m()
-    norm = matplotlib.colors.BoundaryNorm(clevs, cm.N)
-    normdiff = matplotlib.colors.BoundaryNorm(clevsdiff, cmdiff.N)
-
-    cs_1 = ax1.pcolormesh(lon_shift,lat_shift,dew2m_1,transform=transform,cmap=cm,norm=norm)
-    cbar1 = plt.colorbar(cs_1,ax=ax1,orientation='horizontal',pad=0.05,shrink=0.6,extend='both')
-    cbar1.set_label(units,fontsize=6)
-    cbar1.ax.tick_params(labelsize=6)
-    ax1.text(.5,1.03,'FV3-LAM 2-m Dew Point Temperature ('+units+') \n initialized: '+itime+' valid: '+vtime + ' (f'+fhour+')',horizontalalignment='center',fontsize=6,transform=ax1.transAxes,bbox=dict(facecolor='white',alpha=0.85,boxstyle='square,pad=0.2'))
-
-    cs_2 = ax2.pcolormesh(lon2_shift,lat2_shift,dew2m_2,transform=transform,cmap=cm,norm=norm)
-    cbar2 = plt.colorbar(cs_2,ax=ax2,orientation='horizontal',pad=0.05,shrink=0.6,extend='both')
-    cbar2.set_label(units,fontsize=6)
-    cbar2.ax.tick_params(labelsize=6)
-    ax2.text(.5,1.03,'FV3-LAM-2 2-m Dew Point Temperature ('+units+') \n initialized: '+itime+' valid: '+vtime + ' (f'+fhour+')',horizontalalignment='center',fontsize=6,transform=ax2.transAxes,bbox=dict(facecolor='white',alpha=0.85,boxstyle='square,pad=0.2'))
-
-    cs = ax3.pcolormesh(lon2_shift,lat2_shift,dew2m_diff,transform=transform,cmap=cmdiff,norm=normdiff)
-    cs.cmap.set_under('darkblue')
-    cs.cmap.set_over('darkred')
-    cbar3 = plt.colorbar(cs,ax=ax3,orientation='horizontal',pad=0.05,shrink=0.6,extend='both')
-    cbar3.set_label(units,fontsize=6)
-    cbar3.ax.tick_params(labelsize=6)
-    ax3.text(.5,1.03,'FV3-LAM-2 - FV3-LAM 2-m Dew Point Temperature ('+units+') \n initialized: '+itime+' valid: '+vtime+' (f'+fhour+')',horizontalalignment='center',fontsize=6,transform=ax3.transAxes,bbox=dict(facecolor='white',alpha=0.85,boxstyle='square,pad=0.2'))
-
-    compress_and_save(EXPT_DIR_1+'/'+ymdh+'/postprd/2mdew_diff_'+dom+'_f'+fhour+'.png')
-    t2 = time.perf_counter()
-    t3 = round(t2-t1, 3)
-    print(('%.3f seconds to plot 2mdew for: '+dom) % t3)
 
 
 #################################

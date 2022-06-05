@@ -1,7 +1,5 @@
 #!/bin/bash 
 
-set -x
-
 function file_location() {
 
   # Return the default location of external model files on disk
